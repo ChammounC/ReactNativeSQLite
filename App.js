@@ -6,7 +6,7 @@ import {
   View,
   FlatList,
   Text,
-  TouchableWithoutFeedback,
+  TouchableNativeFeedback,
 } from 'react-native';
 import {openDatabase} from 'react-native-sqlite-storage';
 
@@ -101,7 +101,7 @@ const App = () => {
 
   const renderCategories = ({item}) => {
     return (
-      <TouchableWithoutFeedback onPress={() => deleteCategories(item.id)}>
+      <TouchableNativeFeedback onPress={() => deleteCategories(item.id)}>
         <View
           style={{
             flexDirection: 'row',
@@ -114,7 +114,7 @@ const App = () => {
             {item.id} {item.name}
           </Text>
         </View>
-      </TouchableWithoutFeedback>
+      </TouchableNativeFeedback>
     );
   };
 
