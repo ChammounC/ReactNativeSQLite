@@ -121,7 +121,7 @@ const App = () => {
   useEffect(() => {
     createTable();
     getCategories();
-  }, []);
+  }, [getCategories]);
 
   return (
     <View style={{padding: 20}}>
