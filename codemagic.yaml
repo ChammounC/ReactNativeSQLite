@@ -1,6 +1,7 @@
 workflows:
     react-native:
         name: reactnativeappsigning
+        instance_type: mac_mini
         environment:
             vars:
                 XCODE_WORKSPACE: "sqflite"
