@@ -1,7 +1,6 @@
 workflows:
     react-native:
         name: reactnativeappsigning
-        instance_type: mac_mini
         environment:
             vars:
                 XCODE_WORKSPACE: "sqflite"
@@ -11,9 +10,14 @@ workflows:
             - npm install
             - echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"
             - |
+                # build Android
+                cd android
+                ./gradlew assembleDebug
+            - |
                 # build iOS
                 cd ios
                 pod install
                 xcodebuild build -workspace "$XCODE_WORKSPACE.xcworkspace" -scheme "$XCODE_SCHEME" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
         artifacts:
+            - android/app/build/outputs/**/**/*.apk
             - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
