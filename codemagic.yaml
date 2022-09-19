@@ -3,7 +3,7 @@ workflows:
         name: reactnativeappsigning
         environment:
             vars:
-                XCODE_WORKSPACE: "sqflite"
+                XCODE_WORKSPACE: "sqflite.xcworkspace"
                 XCODE_SCHEME: "sqflite"
             node: latest
         scripts:
