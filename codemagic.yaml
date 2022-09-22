@@ -1,18 +1,21 @@
 workflows:
     react-native:
-        name: reactnativeappsigning
-        environment:
-            vars:
-                XCODE_WORKSPACE: "sqflite.xcworkspace"
-                XCODE_SCHEME: "sqflite"
-            node: latest
+        name: RNsqlite
         scripts:
             - npm install
             - echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"
-            - |
-                # build iOS
-                cd ios
-                pod install
-                xcodebuild build -workspace "$XCODE_WORKSPACE.xcworkspace" -scheme "$XCODE_SCHEME" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+            - | 
+                 # build Android
+                 cd android
+                 ./gradlew assembleDebug
+       #     - |
+       #         # build iOS
+       #         cd ios
+       #         pod install
+       #         xcodebuild build -workspace "$XCODE_WORKSPACE.xcworkspace" -scheme "$XCODE_SCHEME" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
         artifacts:
-            - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+            - android/app/build/outputs/**/**/*.apk
+        publishing:
+            email:
+                recipients:
+                    - chammounchakhap.vdoit@gmail.com
