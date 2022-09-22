@@ -1,6 +1,8 @@
 workflows:
     react-native:
         name: RNsqlite
+        environment:
+            node: latest
         scripts:
             - npm install 
             - echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"
