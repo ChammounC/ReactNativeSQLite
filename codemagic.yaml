@@ -2,17 +2,13 @@ workflows:
     react-native:
         name: RNsqlite
         scripts:
-            - npm install
+            - npm install 
             - echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"
-            - | 
-                 # build Android
-                 cd android
-                 ./gradlew assembleDebug
-       #     - |
-       #         # build iOS
-       #         cd ios
-       #         pod install
-       #         xcodebuild build -workspace "$XCODE_WORKSPACE.xcworkspace" -scheme "$XCODE_SCHEME" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+            - |
+                # build Android
+                #react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+                cd android
+                ./gradlew assembleDebug
         artifacts:
             - android/app/build/outputs/**/**/*.apk
         publishing:
